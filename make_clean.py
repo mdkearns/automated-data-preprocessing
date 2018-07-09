@@ -7,9 +7,17 @@ import argparse
 import sys
 import output
 
+def all():
+    print("ALL")
+
 def main():
 
     parser = argparse.ArgumentParser(description=output.description)
+
+    parser.add_argument('filePath', metavar='filePath', type=str, help='Path to uncleaned data file')
+    parser.add_argument('-a', help='All')
+
+    args = parser.parse_args()
 
     # if sys.argv[-1] == '--help':
     #     print(output.info)

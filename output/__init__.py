@@ -1,7 +1,7 @@
 info = "make_clean v1.0.0 (July, 2018) by Matthew D. Kearns\n"
 
-description = "Description\n\tThe make_clean command line utility program " \
-              "automatically performs\n\tcommon data preprocessing " \
+description = "The make_clean command line utility program " \
+              "automatically performs common data preprocessing " \
               "tasks on your uncleaned data sets.\n"
 
 
