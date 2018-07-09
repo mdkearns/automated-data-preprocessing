@@ -3,12 +3,19 @@
 
 # Usage: python make_clean.py [options] /file/path/to/data/
 
+import argparse
 import sys
-import messages
+import output
 
 def main():
-    print(messages.welcome)
-    print(sys.argv[1])
+
+    parser = argparse.ArgumentParser(description=output.description)
+
+    # if sys.argv[-1] == '--help':
+    #     print(output.info)
+    #     print(output.description)
+    #     print(output.usage)
+
 
 if __name__ == '__main__':
     main()
