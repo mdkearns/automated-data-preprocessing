@@ -3,7 +3,7 @@ description = "The make_clean command line utility program automatically " \
 
 options = {'-a': 'all',
            '-c': 'file contains categorical data',
-           '-f': 'file contains field names (headers)',
            '-i': 'interpolate missing values',
+           '-m': 'file is missing field names',
            '-o': 'outlier detection and removal'}
 
