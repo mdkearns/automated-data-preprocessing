@@ -6,26 +6,30 @@
 import argparse
 import output
 import pandas as pd
+import numpy as np
 
 def clean(args):
     print('CLEANING DATA....\n')
 
     if args.missing:
         print(args.filePath, 'doesn\'t contain field names.\n')
-        #df = pd.read_csv(args.filePath, header=None)
+        df = pd.read_csv(args.filePath, header=None)
     else:
         print(args.filePath, 'contains field names.\n')
-        #df = pd.read_csv(args.filePath, header=None)
+        df = pd.read_csv(args.filePath, header=0)
 
     if args.categorical or args.all:
         # get list of fields that are continuous and transform categorical fields
+        real = [i for i in range(len(df.iloc[0])) if type(df.iloc[0, i]) != str]
         print('Transforming categorical data using one-hot encoding...', end='')
-        # df = pd.get_dummies(df)
+        df = pd.get_dummies(df)
         print('ok')
+
+    print(df.head())
 
     if args.interpolate or args.all:
         print('Detecting missing values...', end='')
-        # perform computation
+        df.replace('?', np.nan)
         print('ok')
         print('Imputing missing values...', end='')
         # perform computation
