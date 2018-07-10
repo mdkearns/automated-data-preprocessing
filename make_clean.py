@@ -32,7 +32,10 @@ def clean(args):
         df.replace('?', np.nan)
         print('ok')
         print('Imputing missing values...', end='')
-        # perform computation
+        # interpolate missing real-valued data (field mean)
+
+        # interpolate missing categorical data (field mode)
+
         print('ok')
 
     if args.outliers or args.all:
