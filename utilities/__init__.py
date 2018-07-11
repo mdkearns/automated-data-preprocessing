@@ -69,10 +69,16 @@ def interpolate_missing_data(data, real, discrete):
 
     return data
 
-def remove_outliers(data):
+def remove_outliers(data, real):
     """Remove outliers from data and return as a pandas data frame."""
 
+    # get field mean and std for real-valued fields
+    mean = data.describe().iloc[1, :]
+    std = data.describe().iloc[2, :]
+
     # remove outliers
+    for (real, mean, std) in zip(real, mean, std):
+        data = data[data[real] < 3*std + mean]
 
     return data
 
