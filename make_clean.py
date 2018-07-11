@@ -12,41 +12,35 @@ from utilities import *
 def clean(args):
     """Load and clean user-supplied data."""
 
-    print('CLEANING DATA....\n')
+    print('CLEANING DATA....')
 
     # load data as a pandas data frame
     df = load_csv(args.filePath, missing_headers=args.missing)
 
-    # get list of fields that are continuous
+    # get lists of fields that are continuous and discrete
     real = [i for i in range(len(df.iloc[0])) if type(df.iloc[0, i]) != str]
+    discrete = [i for i in range(len(df.iloc[0])) if type(df.iloc[0, i]) == str]
 
     # interpolate missing data values
     if args.interpolate or args.all:
-        print('Detecting missing values...', end='')
-        df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x) # strip whitespace from data
-        df = df.replace('?', np.nan)
-        print('ok')
-        print('Imputing missing values...', end='')
-        # interpolate missing real-valued data (field mean)
-        # interpolate missing categorical data (field mode)
-        print('ok')
+        print('\tDetecting missing values...')
+        df = replace_missing_data(df)
+        print('\tImputing missing values...')
+        df = interpolate_missing_data(df, real, discrete)
 
     # detect and remove outliers
     if args.outliers or args.all:
-        print('Detecting outliers...', end='')
+        print('\tDetecting outliers...')
         # perform computation
-        print('ok')
-        print('Removing outliers...', end='')
+        print('\tRemoving outliers...')
         # perform computation
-        print('ok')
 
     # one-hot encode the categorical variables
     if args.categorical or args.all:
-        print('Transforming categorical data using one-hot encoding...', end='')
+        print('\tTransforming categorical data using one-hot encoding...')
         df = one_hot_encode(df)
-        print('ok')
 
-    print('\nDONE.')
+    print('DONE.')
 
 def add_args(parser):
     """Add command line options for customized data preprocessing."""
