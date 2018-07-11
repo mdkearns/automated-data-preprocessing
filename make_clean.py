@@ -20,21 +20,18 @@ def clean(args):
     # get list of fields that are continuous
     real = [i for i in range(len(df.iloc[0])) if type(df.iloc[0, i]) != str]
 
+    # interpolate missing data values
     if args.interpolate or args.all:
         print('Detecting missing values...', end='')
         df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x) # strip whitespace from data
         df = df.replace('?', np.nan)
         print('ok')
-
         print('Imputing missing values...', end='')
         # interpolate missing real-valued data (field mean)
-
         # interpolate missing categorical data (field mode)
-
         print('ok')
 
-    print(df)
-
+    # detect and remove outliers
     if args.outliers or args.all:
         print('Detecting outliers...', end='')
         # perform computation
@@ -43,6 +40,7 @@ def clean(args):
         # perform computation
         print('ok')
 
+    # one-hot encode the categorical variables
     if args.categorical or args.all:
         print('Transforming categorical data using one-hot encoding...', end='')
         df = one_hot_encode(df)
