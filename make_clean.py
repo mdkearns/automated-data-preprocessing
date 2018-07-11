@@ -31,12 +31,15 @@ def clean(args):
     # detect and remove outliers
     if args.outliers or args.all:
         print('\tRemoving outliers...')
-        df = remove_outliers(df)
+        df = remove_outliers(df, real)
 
     # one-hot encode the categorical variables
     if args.categorical or args.all:
         print('\tTransforming categorical data using one-hot encoding...')
         df = one_hot_encode(df)
+
+    # save cleaned data file to same directory as uncleaned version
+    df.to_csv(args.filePath[:-5] + '_CLEAN.csv')
 
     print('DONE.')
 
