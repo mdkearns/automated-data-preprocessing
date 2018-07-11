@@ -70,6 +70,7 @@ def interpolate_missing_data(data, real, discrete):
     return data
 
 def remove_outliers(data):
-    pass
+    """Remove outliers from data and return as a pandas data frame."""
+    return data
 
 

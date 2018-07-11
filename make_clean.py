@@ -31,7 +31,7 @@ def clean(args):
     # detect and remove outliers
     if args.outliers or args.all:
         print('\tRemoving outliers...')
-        # perform computation
+        df = remove_outliers(df)
 
     # one-hot encode the categorical variables
     if args.categorical or args.all:
