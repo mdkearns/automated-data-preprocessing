@@ -30,8 +30,6 @@ def clean(args):
 
     # detect and remove outliers
     if args.outliers or args.all:
-        print('\tDetecting outliers...')
-        # perform computation
         print('\tRemoving outliers...')
         # perform computation
 

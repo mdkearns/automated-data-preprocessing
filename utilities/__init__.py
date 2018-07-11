@@ -69,4 +69,7 @@ def interpolate_missing_data(data, real, discrete):
 
     return data
 
+def remove_outliers(data):
+    pass
+
 
